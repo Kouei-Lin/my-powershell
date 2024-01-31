@@ -35,14 +35,14 @@ function Invoke-NmapScan {
 }
 
 # Function to get current DNS servers
-function Get-DNS {
+function Get-DefaultDNS {
     $dnsServers = Get-DnsClientServerAddress -AddressFamily "IPv4" | Where-Object { $_.ServerAddresses -ne $null }
     Write-Host "Current DNS Servers:"
     $dnsServers
 }
 
 # Function to test domain availability
-function Domain-Test {
+function Domain-Resolve {
     # Define an array of popular domain names to check
     $domains = @(
         "google.com",
@@ -91,9 +91,9 @@ $menuOptions = @(
     "0. Quit",
     "1. Invoke Nmap Scan",
     "2. Download and Install Nmap",
-    "3. Get Default DNS",
-    "4. Test DNS Resolve",
-    "5. Ping IP Test",
+    "3. Get DNS Resolve",
+    "4. Get Default DNS",
+    "5. Ping Custom IP",
     "6. Ping Default Gateway"
 )
 
@@ -103,12 +103,16 @@ $menuOptions
 
 # Loop to handle user selection
 do {
+    # Display the menu options
+    Write-Host "Select an option:"
+    $menuOptions
+
     # Prompt user to select an option
-    $selection = Read-Host "Enter your choice (0-5):"
+    $selection = Read-Host "Enter your choice (0-6):"
 
     # Process the user's selection
     switch ($selection) {
-       "0" {
+        "0" {
             Write-Host "Exiting..."
             break
         }
@@ -119,10 +123,10 @@ do {
             Get-NmapInstaller
         }
         "3" {
-            Get-DNS
+            Domain-Resolve
         }
         "4" {
-            Domain-Test
+            Get-DefaultDNS
         }
         "5" {
             Ping-CustomIP
