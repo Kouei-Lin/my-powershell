@@ -9,8 +9,18 @@ $apps = @{
     "wireguard" = "https://download.wireguard.com/windows-client/wireguard-installer.exe"
 }
 
-# Loop through each URL and start the download process
-foreach ($key in $apps.Keys) {
-    Start-Process $apps[$key]
-    Start-Sleep -Seconds 10
+# Define the function to initiate the download process for each application
+function Get-Installer {
+    param (
+        [hashtable]$Applications
+    )
+
+    foreach ($key in $Applications.Keys) {
+        Start-Process $Applications[$key]
+        Start-Sleep -Seconds 10
+    }
 }
+
+# Call the function to initiate the download process for each application
+Get-Installer -Applications $apps
+
