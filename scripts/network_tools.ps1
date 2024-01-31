@@ -16,7 +16,7 @@ function Get-NmapInstaller {
     Start-Process "$env:USERPROFILE\Downloads\nmap*.exe"
 }
 
-# Function to invoke an Nmap scan
+# Function for nmap
 function Invoke-NmapScan {
     # Prompt the user to input the scan range
     $scanRange = Read-Host "Enter the scan range (e.g. 192.168.1.0/24):"
@@ -25,13 +25,13 @@ function Invoke-NmapScan {
     $nmapCommand = "C:\Program Files (x86)\Nmap\nmap.exe"
 
     # Define the parameters for the Nmap scan
-    $nmapParameters = "-sn $scanRange"
-    
-    # Define filename
-    $CurrentTime = Get-Date -Format "yyyyMMdd_HHmmss"
-    $FileName = "nmap_$CurrentTime.txt"
+    $nmapParameters = "-oN nmap_results.txt -sn $scanRange"  # Output in normal format
+
     # Start the Nmap process
-    Start-Process -FilePath $nmapCommand -ArgumentList $nmapParameters -NoNewWindow -Wait > $FileName
+    Start-Process -FilePath $nmapCommand -ArgumentList $nmapParameters -NoNewWindow -Wait
+
+    # Inform the user about the completion and the file location
+    Write-Host "Nmap scan results have been saved to nmap_results.txt"
 }
 
 # Function to get current DNS servers
