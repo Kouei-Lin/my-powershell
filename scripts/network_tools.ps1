@@ -19,7 +19,7 @@ function Get-NmapInstaller {
 # Function to invoke an Nmap scan
 function Invoke-NmapScan {
     # Prompt the user to input the scan range
-    $scanRange = Read-Host "Enter the scan range (e.g., 192.168.1.0/24):"
+    $scanRange = Read-Host "Enter the scan range (e.g. 192.168.1.0/24):"
 
     # Define the command to run Nmap
     $nmapCommand = "C:\Program Files (x86)\Nmap\nmap.exe"
@@ -66,7 +66,7 @@ function Domain-Resolve {
 
 function Ping-CustomIP {
     # Prompt the user to input the IP address to ping
-    $targetAddress = Read-Host "Enter the IP address to ping:"
+    $targetAddress = Read-Host "Enter the IP address to ping (e.g. 1.1.1.1):"
 
     # Ping the target IP address
     Write-Host "Pinging $targetAddress..."
