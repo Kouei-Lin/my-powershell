@@ -1,6 +1,6 @@
 # Define the environment variables
 $apps = @{
-    "chrome" = "http://dl.google.com/chrome/install/375.126/chrome_installer.exe"
+    "chrome" = "http://dl.google.com/chrome/install/latest/chrome_installer.exe"
     "7zip" = "https://www.7-zip.org/a/7z2301-x64.exe"
     "skype" = "https://go.skype.com/windows.desktop.download"
     "line" = "https://desktop.line-scdn.net/win/new/LineInst.exe"
