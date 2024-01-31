@@ -29,7 +29,7 @@ function Invoke-NmapScan {
     
     # Define filename
     $CurrentTime = Get-Date -Format "yyyyMMdd_HHmmss"
-    $FileName = "$CurrentTime.txt"
+    $FileName = "nmap_$CurrentTime.txt"
     # Start the Nmap process
     Start-Process -FilePath $nmapCommand -ArgumentList $nmapParameters -NoNewWindow -Wait > $FileName
 }
