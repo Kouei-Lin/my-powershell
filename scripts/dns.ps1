@@ -1,6 +1,6 @@
 # Function to get current DNS servers
 function Get-DNS {
-    $dnsServers = Get-DnsClientServerAddress -AddressFamily "IPv4"
+    $dnsServers = Get-DnsClientServerAddress -AddressFamily "IPv4" | Where-Object { $_.ServerAddresses -ne $null }
     Write-Host "Current DNS Servers:"
     $dnsServers
 }
