@@ -89,7 +89,7 @@ function Ping-DefaultGateway {
 # Define the menu options
 $menuOptions = @(
     "0. Quit",
-    "1. Invoke Nmap Scan",
+    "1. Nmap Scan",
     "2. Download and Install Nmap",
     "3. Get DNS Resolve",
     "4. Get Default DNS",
