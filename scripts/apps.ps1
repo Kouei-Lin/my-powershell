@@ -23,4 +23,3 @@ function Get-Installer {
 
 # Call the function to initiate the download process for each application
 Get-Installer -Applications $apps
-
