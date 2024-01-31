@@ -97,10 +97,6 @@ $menuOptions = @(
     "6. Ping Default Gateway"
 )
 
-# Display the menu options
-Write-Host "Select an option:"
-$menuOptions
-
 # Loop to handle user selection
 do {
     # Display the menu options
@@ -138,4 +134,6 @@ do {
             Write-Host "Invalid selection. Please try again."
         }
     }
+    # Add separators for better readability
+    Write-Host "====================================================================="
 } while ($selection -ne "0")
