@@ -17,14 +17,17 @@ function Get-NmapInstaller {
 }
 
 function Invoke-NmapScan {
-    # Prompt the user to input the scan range
-    $scanRange = Read-Host "Enter the scan range (e.g. 192.168.1.0/24):"
+    # Define the current date and time
+    $CurrentDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
 
     # Define the command to run Nmap
     $nmapCommand = "C:\Program Files (x86)\Nmap\nmap.exe"
 
-    # Define the output file name using the scan range
-    $outputFileName = "nmap_results_$scanRange.txt"
+    # Define the output file name using the current date and time
+    $outputFileName = "nmap_results_$CurrentDateTime.txt"
+
+    # Prompt the user to input the scan range
+    $scanRange = Read-Host "Enter the scan range (e.g. 192.168.1.0/24):"
 
     # Define the parameters for the Nmap scan
     $nmapParameters = "-oN $outputFileName -sn $scanRange"  # Output in normal format
