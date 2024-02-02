@@ -1,42 +1,19 @@
 # Function to download and install Nmap
-function Get-NmapInstaller {
-    # Define the Nmap version
-    $nmapVersion = "7.94"
-
-    # Define the URL to download the Nmap installer
-    $nmapInstallerUrl = "https://nmap.org/dist/nmap-$nmapVersion-setup.exe"
-
-    # Download the Nmap installer
-    Start-Process $nmapInstallerUrl
-
-    # Sleep for 10 seconds
-    Start-Sleep -Seconds 10
-
-    # Start the Nmap installer
-    Start-Process "$env:USERPROFILE\Downloads\nmap*.exe"
-}
-
-function Invoke-NmapScan {
+function Invoke-ARPScan {
     # Define the current date and time
     $CurrentDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
 
-    # Define the command to run Nmap
-    $nmapCommand = "C:\Program Files (x86)\Nmap\nmap.exe"
-
     # Define the output file name using the current date and time
-    $outputFileName = "nmap_results_$CurrentDateTime.txt"
+    $outputFileName = "arp_results_$CurrentDateTime.txt"
 
-    # Prompt the user to input the scan range
-    $scanRange = Read-Host "Enter the scan range (e.g. 192.168.1.0/24):"
+    # Run the ARP command to scan the specified range
+    $arpOutput = arp -a
 
-    # Define the parameters for the Nmap scan
-    $nmapParameters = "-oN $outputFileName -sn $scanRange"  # Output in normal format
-
-    # Start the Nmap process
-    Start-Process -FilePath $nmapCommand -ArgumentList $nmapParameters -NoNewWindow -Wait
+    # Write the ARP scan results to the output file
+    $arpOutput | Out-File -FilePath $outputFileName
 
     # Inform the user about the completion and the file location
-    Write-Host "Nmap scan results have been saved to $outputFileName"
+    Write-Host "ARP scan results have been saved to $outputFileName"
 }
 
 # Function to get current DNS servers
@@ -94,12 +71,11 @@ function Ping-DefaultGateway {
 # Define the menu options
 $menuOptions = @(
     "0. Quit",
-    "1. Nmap Scan",
-    "2. Download and Install Nmap",
-    "3. Get DNS Resolve",
-    "4. Get Default DNS",
-    "5. Ping Custom IP",
-    "6. Ping Default Gateway"
+    "1. ARP Scan",
+    "2. Get DNS Resolve",
+    "3. Get Default DNS",
+    "4. Ping Custom IP",
+    "5. Ping Default Gateway"
 )
 
 # Loop to handle user selection
@@ -109,7 +85,7 @@ do {
     $menuOptions
 
     # Prompt user to select an option
-    $selection = Read-Host "Enter your choice (0-6):"
+    $selection = Read-Host "Enter your choice (0-5):"
 
     # Process the user's selection
     switch ($selection) {
@@ -118,21 +94,18 @@ do {
             break
         }
         "1" {
-            Invoke-NmapScan
+            Invoke-ARPScan
         }
         "2" {
-            Get-NmapInstaller
-        }
-        "3" {
             Domain-Resolve
         }
-        "4" {
+        "3" {
             Get-DefaultDNS
         }
-        "5" {
+        "4" {
             Ping-CustomIP
         }
-        "6" {
+        "5" {
             Ping-DefaultGateway
         }
         default {
