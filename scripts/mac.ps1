@@ -1,6 +1,6 @@
 function Log-MACAddress {
     # Prompt user for the name to be saved
-    $name = Read-Host -Prompt "Enter the PC owner name, please"
+    $name = Read-Host -Prompt "Enter the PC owner name, pls"
 
     # Get the current date
     $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
