@@ -3,7 +3,7 @@ function Log-MACAddress {
     $name = Read-Host -Prompt "Enter the PC owner name pls"
 
     # Get the current date
-    $date = Get-Date -Format "yyyy-MM-dd HH:mm"
+    $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
     # Define the path for the CSV file
     $csvPath = "mac.csv"
