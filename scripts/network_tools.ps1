@@ -1,4 +1,4 @@
-# Function to download and install Nmap
+# Function to perform ARP scan
 function Invoke-ARPScan {
     # Define the current date and time
     $CurrentDateTime = Get-Date -Format "yyyyMMdd_HHmmss"
