@@ -1,6 +1,6 @@
 function Log-MACAddress {
     # Prompt user for the name to be saved
-    $name = Read-Host -Prompt "Enter the PC owner name pls"
+    $name = Read-Host -Prompt "Enter the PC owner name, please"
 
     # Get the current date
     $date = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
@@ -10,7 +10,7 @@ function Log-MACAddress {
 
     # Check if the CSV file exists, if not, create a new one with headers
     if (-not (Test-Path $csvPath)) {
-        "Date,Name,MAC,Interface" | Out-File -FilePath $csvPath -Encoding utf8
+        "Date,Name,MAC,Interface,Ping" | Out-File -FilePath $csvPath -Encoding utf8
     }
 
     # Get all network adapters and loop through each one
@@ -20,8 +20,14 @@ function Log-MACAddress {
         $macAddress = $adapter.MacAddress
         $interface = $adapter.InterfaceDescription
 
+        # Perform ping test
+        $pingResult = "Failed"
+        if (Test-Connection -ComputerName 1.1.1.1 -Count 3 -Quiet) {
+            $pingResult = "Success"
+        }
+
         # Append the data to the CSV file
-        "$date,$name,$macAddress,$interface" | Out-File -FilePath $csvPath -Encoding utf8 -Append
+        "$date,$name,$macAddress,$interface,$pingResult" | Out-File -FilePath $csvPath -Encoding utf8 -Append
     }
 
     Write-Host "Script finished"
