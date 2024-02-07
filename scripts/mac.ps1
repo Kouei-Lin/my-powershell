@@ -10,7 +10,7 @@ function Log-MACAddress {
 
     # Check if the CSV file exists, if not, create a new one with headers
     if (-not (Test-Path $csvPath)) {
-        "Date,Name,MAC,Interface,Ping" | Out-File -FilePath $csvPath -Encoding utf8
+        "Date,Name,MAC,Interface,Ping 1.1.1.1" | Out-File -FilePath $csvPath -Encoding utf8
     }
 
     # Get all network adapters and loop through each one
