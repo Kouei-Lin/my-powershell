@@ -29,9 +29,6 @@ foreach ($url in $urls) {
     $graphics = [System.Drawing.Graphics]::FromImage($screenshot)
     $graphics.CopyFromScreen([System.Drawing.Point]::Empty, [System.Drawing.Point]::Empty, $screen.size)
     $screenshot.Save($screenshotPath)
-}
 
-# Wait for all browser processes to exit
-$browserProcesses | ForEach-Object {
-    Wait-Process -Id $_
+    Stop-Process -Id $process.Id
 }
