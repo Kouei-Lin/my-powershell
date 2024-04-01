@@ -29,6 +29,4 @@ foreach ($url in $urls) {
     $graphics = [System.Drawing.Graphics]::FromImage($screenshot)
     $graphics.CopyFromScreen([System.Drawing.Point]::Empty, [System.Drawing.Point]::Empty, $screen.size)
     $screenshot.Save($screenshotPath)
-
-    Stop-Process -Id $process.Id
 }
