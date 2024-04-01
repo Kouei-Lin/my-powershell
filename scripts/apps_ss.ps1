@@ -1,7 +1,7 @@
 # Define the URLs you want to open
 $urls = @(
-    "google.com"
-    "en.wikipedia.org",
+    "google.com",
+    "en.wikipedia.org"
 )
 
 # Define base directory for saving screenshots
